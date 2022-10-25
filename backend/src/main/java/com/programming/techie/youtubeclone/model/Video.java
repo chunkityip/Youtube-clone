@@ -22,5 +22,7 @@ public class Video {
     private String title;
     private String description;
     private String userId;
+    private String videoUrl;
+
 
 }
