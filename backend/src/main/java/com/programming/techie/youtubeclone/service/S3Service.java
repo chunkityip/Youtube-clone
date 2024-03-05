@@ -3,6 +3,7 @@ package com.programming.techie.youtubeclone.service;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import io.github.pixee.security.Filenames;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class S3Service implements FileService {
     @Override
     public String uploadFile(MultipartFile file) {
         //Prepare a Key
-        var filenameExtension = StringUtils.getFilenameExtension(file.getOriginalFilename());
+        var filenameExtension = StringUtils.getFilenameExtension(Filenames.toSimpleFileName(file.getOriginalFilename()));
 
         var key = UUID.randomUUID().toString() + "." + filenameExtension;
 
